@@ -11,6 +11,7 @@
     <meta property="og:site_name" content="VoidStone Github">
     <meta property="og:image" content="https://cooleman2007.github.io/Doc/discord/Discord_icon.png">
     <link type="application/json+oembed" href="https://cooleman2007.github.io/Doc/discord/discord-web-embed-doc-oembed.json">
+    <meta name="twitter:card" content="summary_large_image">
     <!-- LINKED DATA -->
     <!-- PAGE ICON -->
     <link id="page-icon" rel="icon" href="https://discord.com/assets/07dca80a102d4149e9736d4b162cff6f.ico">
@@ -113,6 +114,9 @@
       <h2>Moving the current image to the bottom</h2>
       <p>I agree with you, the current embed doesn't looks fantastic with that super small banner. So.. let's fix that!</p>
       <p>This trick requires the oEmbed "type" tag I talked about before as well as a few others. <em>Warning! - Doing that will remove the description field.</em> To do that, add the following line to your json file:</p>
+      <p><code>"type": "photo"</code></p>
+      <p>And badabing, badaboom <a href="#">you got a wonderful banner</a>!</p>
+      <p>However, if you would like to keep your description, you can remove the said line from your JSON file; and add the following to your HTML file:</p>
       <p><code>&lt;meta name="twitter:card" content="summary_large_image"&gt;</code></p>
       <p>It will result in the following embed. Much better, right?</p>
       <hr>
