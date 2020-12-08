@@ -1,0 +1,77 @@
+<!DOCTYPE html5>
+<html>
+  <head>
+    <style>
+      .container {
+        max-width: 840px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Meta and embeds for Discord (and other social media sites)</h1>
+      <h2>Introduction</h2>
+      <p>From services (Servers Lists, as an example) to server/bot websites, there are many websites related to discord. As an example, <a href="#">take a look at the Namecheap listing</a> for "Discord" or at the list of <a href="#">domains backlinking to "discordapp.com"</a> - Crazy right?</p>
+      <p>The interesting part is that since these websites are related to Discord they are mostly shared on the eponymous platform. Sounds logic to you? Excellent, because that's what this post is going to focus on.</p>
+      <p>Indeed, we are going to take a look today at how to optimize the advertising power of your website on Discord through the magic of embeds.</p>
+      <p>Before going any further, I assume most of you are aware of what an embed is. However, it is important to acknowledge that we are not talking about rich embeds created by a bot or a webhook, but about <a href="#">this kind</a> of embeds. Got it? Wonderful, let's begin then!</p>
+      <p>Let's begin!</p>
+      <em>In order to facilitate the reading of this post and make it accessible to as many people as possible, I will consider that (while being slightly familiar with HTML and somehow resourceful) you have never bothered to add an embed on your website.</em>
+      <h2>Requirements</h2>
+      <ul>
+        <li><p>Access to an online hosted <code>.html</code> file</p></li>
+      </ul>
+      <p>Remember the embed that I showed you earlier? That's what Discord displays, using only <strong>OpenGraph</strong> meta tags. You can take a look at the list of <a href="#">meta tags on their website</a>, but actually Discord doesn't support most of them. Actually, the only meta tags supported by Discord with "OpenGraph" are the following:</p>
+      <p><code>og:title</code>, <code>og:site_name</code>, <code>og:image</code>, and <code>og:description</code></p>
+      <p>These are also all the tags used by Discord on the <a href="#">said embed</a>. Now, let's try to reproduce it ourselves, shall we? To begin with, simply create an html file and fill it with the proper syntax for meta tags as shown below. Then, add your own text. I personally reused discordapp.com's embed, in order to showcase how it's created.</p>
+      <code>&lt;meta content="Discord - Free Voice and Text Chat" property="og:title"&gt;
+      &lt;meta content="Step up your game with a modern voice & text chat app. Crystal clear voice, multiple server and channel support, mobile apps, and more." property="og:description"&gt;
+      &lt;meta content="Discord" property="og:site_name"&gt;
+      &lt;meta content='https://discordapp.com/assets/ba74954dde74ff40a32ff58069e78c36.png' property='og:image'&gt;</code>
+      <p>Alright, let's take a look now. Wonderful! <a href="#">These embeds, are looking like exactly the same..</a> Well, except that I took the wrong asset for the image but.... Shhh....</p>
+      <p><em>Did you know?-</em> As the content above is HTML, it does not matter whether you use this syntax:</p>
+      <p><code>&lt;meta content="Discord" property="og:site_name"&gt;</code></p>
+      <p>Or this syntax:</p>
+      <p><code>&lt;meta property="og:site_name" content="Discord"&gt;</code></p>
+      <p>We need to go deeper!</p>
+      <em>That's dope, right? We got a nice looking little embed for our website. But... it's too generic. Let's see what else we can do, alright?</em>
+      <h2>Requirements</h2>
+      <ul>
+        <li><p>Access to an online hosted <code>.html</code> file.</p></li>
+        <li><p>Access to an online hosted <code>.json</code> file.</p></li>
+      </ul>
+      <p>Previously, we used "OpenGraph" to display our embed. But, as you noticed it's not that exciting. Not at all, in fact. Which is why we are now going to add oEmbed on top of that! Thanks to <strong>oEmbed</strong>, we will be able to add a new field, as well as editing a little bit further an already existing field. In an other category, we will use more in depth oEmbed functions to improve our embed even further.</p>
+      <p>To begin with, let's see how to call oEmbed tags inside our html page. Unlike the previous ""built-in"" meta tags, this one will require us to use the <link> tag. That is why we will need an additional json file, on top of the already existing html file. But first, let's take a look at (some of) the tags provided by oEmbed:</p>
+      <p><code>title</code>, <code>author_name</code>, <code>author_url</code>, <code>provider_name</code>, <code>provider_url</code>.</p>
+      <p>That is not the full list of tags, like OpenGraph, but rather some of the tags supported by Discord. You can browse the complete list <a href="#">on their website</a>. We will however, talk about some tags such as <code>type</code> a little bit further. First, let's try to create an embed without mixing both oEmbed and OpenGraph, to see what is provided by oEmbed.</p>
+      <em><code>{<br>
+   "title": "Title Field",<br>
+<br>
+   "author_name": "Author Name Field",<br>
+   "author_url": "https://discordapp.com",<br>
+<br>
+   "provider_name": "Provider Name Field",<br>
+   "provider_url": "https://discordapp.com"<br>
+}</code></em>
+      <p>Once we created our json file, let's say <code>oembed.json</code> we will need to host it. If you are using a webserver, simply call it with <code>/oembed.json</code> but if you are hosting it on a gist, you will need to include the full url.</p>
+      <p><code>&lt;link type="application/json+oembed" href="where-the-oembed-info-is.json"&gt;</code></p>
+      <p>In my case, I hosted the JSON file on an external ressource, and I called it in my html page like that:</p>
+      <p><code>&lt;link type="application/json+oembed" href="https://owo.whats-th.is/26822d.json"&gt;</code></p>
+      <p>And <a href="#">this is how it looks like</a>. Wonderful, right? We earned an additional field, as promised. The "Author Name" field. And, if we click on each one of them, you will notice that the "Provider Name" field is now clickable, unlike with the openGraph meta tags. However, and this time like the openGraph meta tags, we are not able to set a custom url for the Title field. No big deals, right? You need to link to your website anyways.</p>
+      <p>Now, here comes the fun. As you noticed, the openGraph meta tags can add images and description, while the oEmbed tags can add an Author field and a clickable provider field. So... let's mix both of them! First of all, let's just take a quick look at the following sheet to know when to use openGraph, and when to use oEmbed:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Author Field</th>
+            <th>Provider Field</th>
+            h
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </body>
+</html>
