@@ -68,10 +68,49 @@
             <th>Image</th>
             <th>Author Field</th>
             <th>Provider Field</th>
-            h
+            <th>Title</th>
           </tr>
         </thead>
+        <tbody>
+          <tr>
+            <th>openGraph</th>
+            <th>✔️</th>
+            <th>✔️</th>
+            <th>❌</th>
+            <th>✔️</th>
+          </tr>
+          <tr>
+            <th>oEmbed</th>
+            <th>❌</th>
+            <th>❌</th>
+            <th>✔️ - Clickable</th>
+            <th>✔️ - Clickable</th>
+          </tr>
+        </tbody>
       </table>
+      <p>Alright, so now let's build an enhanced embed. Sounds good to you? I am going to take the ""same"" example embed as before, with a few added features.</p>
+      <p><strong>JSON</strong></p>
+      <pre><code>{<br>    "author_name": "It's time to ditch Skype and TeamSpeak.",<br>    "author_url": "https://discordapp.com",<br>    "provider_name": "We are hiring! Click here to join us.",<br>    "provider_url: "https://discordapp.com/jobs"<br>}</code></pre>
+      <p><strong>HTML</strong></p>
+      <pre><code>&lt;meta content="Discord = Free Voice and Text Chat" property="og:title"&gt;<br>&lt;meta content="All-in-one voice and text chat for gamers that's free, secure, and works on both your desktop and phone. Stop paying for TeamSpeak servers and hassling with Skype. Simplify your live." property="og:description"&gt;<br>&lt;meta content="https://discordapp.com/assets/ba74954dde74ff40a32ff58069e78c36.png" property="og:image"&gt;<br>&lt;link type="application/json+oembed" href="https://owo.whats=th.is//e61180.json"&gt;</code></pre>
+      <h2>Result</h2>
+      <p>And <a href="#">here's how it looks like</a>. I agree, it's not beautiful because there is too much information. I just wanted to showcase different possible usages of the field. Obviously, you do not have to keep all the fields. You could as an example, go without the provider field, as <a href="#">shown here</a>.</p>
+      <p>By the way, did you notice something? Yup, I added a newline in the description field. It's pretty cool actually, because you can make much cleaner looking fields. I'll let you play with that.</p>
+      <p>I said deeper! That's not deep enough!</p>
+      <em>Ooooh... I see you're a curious man. Because, yes, we can indeed go muuuch deeper. Yaaay!</em>
+      <h2>Colouring the embed sidebar.</h2>
+      <p>Yup. That's right. You, can color the sidebar of your embed. Sounds too good to be true? Try it by yourself, then!</p>
+      <p>This trick doesn't require oEmbed or openGraph, since it's a default meta tag. To define a custom sidebar color, you'll need an #HEX code. I personally went with discordapp's blurple. To the HTML codeblock above, I added the following line:</p>
+      <p><code>&lt;meta name="theme-color" content="#7289DA"&gt;</code></p>
+      <p>Let's upload the file and... <a href="#">woah!</a> - We got a fresh coat of paint on that dirty embed. Wonderful, right?</p>
+      <h2>Moving the current image to the bottom</h2>
+      <p>I agree with you, the current embed doesn't looks fantastic with that super small banner. So.. let's fix that!</p>
+      <p>This trick requires the oEmbed "type" tag I talked about before as well as a few others. <em>Warning! - Doing that will remove the description field.</em> To do that, add the following line to your json file:</p>
+      <p><code>&lt;meta name="twitter:card" content="summary_large_image"&gt;</code></p>
+      <p>It will result in the following embed. Much better, right?</p>
+      <hr>
+      <p>Original article: <a style="word-wrap:break-word;" href="https://www.reddit.com/r/discordapp/comments/82p8i6/a_basic_tutorial_on_how_to_get_the_most_out_of/">https://www.reddit.com/r/discordapp/comments/82p8i6/a_basic_tutorial_on_how_to_get_the_most_out_of/</a></p>
+      <hr>
     </div>
   </body>
 </html>
